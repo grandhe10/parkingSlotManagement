@@ -1,5 +1,8 @@
 package com.abc.parkingslotbooking.controller;
 
-public class ParkingSlotController {
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+public class ParkingSlotController {
+	
 }

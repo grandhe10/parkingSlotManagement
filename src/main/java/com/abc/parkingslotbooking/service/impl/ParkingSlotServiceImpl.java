@@ -1,7 +1,9 @@
 package com.abc.parkingslotbooking.service.impl;
 
-import com.abc.parkingslotbooking.service.ParkingSlotService;
+import org.springframework.stereotype.Service;
 
+import com.abc.parkingslotbooking.service.ParkingSlotService;
+@Service
 public class ParkingSlotServiceImpl implements ParkingSlotService {
 
 }

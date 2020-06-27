@@ -2,6 +2,6 @@ package com.abc.parkingslotbooking.model;
 
 public enum StatusOptions {
 	
-	AVAILABLE,UNAVAILABLE
+	AVAILABLE,UNAVAILABLE,PENDING,APPROVED
 
 }

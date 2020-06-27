@@ -14,7 +14,7 @@ public class Requests {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
-	Long reqLongestId;
+	Long requestId;
 	Long employeeId;
 	@Enumerated(EnumType.STRING)
 	RequestType requestType;
@@ -23,14 +23,7 @@ public class Requests {
 	StatusOptions statusOptions;
 	Long parkingSlotNumber;
 
-	public Long getReqLongestId() {
-		return reqLongestId;
-	}
-
-	public void setReqLongestId(Long reqLongestId) {
-		this.reqLongestId = reqLongestId;
-	}
-
+	
 	public Long getEmployeeId() {
 		return employeeId;
 	}
@@ -69,6 +62,14 @@ public class Requests {
 
 	public void setParkingSlotNumber(Long parkingSlotNumber) {
 		this.parkingSlotNumber = parkingSlotNumber;
+	}
+
+	public Long getRequestId() {
+		return requestId;
+	}
+
+	public void setRequestId(Long requestId) {
+		this.requestId = requestId;
 	}
 
 }

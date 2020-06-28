@@ -14,8 +14,6 @@ import com.abc.parkingslotbooking.model.StatusOptions;
 @Repository
 public interface RequestsDao extends CrudRepository<Requests, Long>{
 	
-	
-
 	Optional<List<Requests>> findByRequestTypeAndStatusOptionsAndDate(RequestType requestType,StatusOptions statusType,LocalDate date);
 	
 	 /**This method is used to get all the requests by employeeId and requestid

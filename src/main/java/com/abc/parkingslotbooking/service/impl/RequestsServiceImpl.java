@@ -57,9 +57,9 @@ public class RequestsServiceImpl implements RequestsService {
 
 		List<LocalDate> dateList = RequestsServiceImpl.getDatesBetweenUsingJava8(requestDto.getFromDate(),
 				requestDto.getToDate());
-	
+
 		if (dateList.stream().map(date -> addRequest(date, employeeId)).collect(Collectors.toList()).contains(null)) {
-			
+
 			requestResponseDto.setMessage("Request cannot be submitted ");
 			requestResponseDto.setStatusCode(HttpStatus.BAD_REQUEST.value());
 			return requestResponseDto;
@@ -73,7 +73,7 @@ public class RequestsServiceImpl implements RequestsService {
 
 	private static List<LocalDate> getDatesBetweenUsingJava8(LocalDate fromDate, LocalDate toDate) {
 		if (fromDate.equals(toDate)) {
-			
+
 			List<LocalDate> localDatelist = new ArrayList<>();
 			localDatelist.add(fromDate);
 			return localDatelist;
@@ -103,8 +103,7 @@ public class RequestsServiceImpl implements RequestsService {
 				if (parkingSlotOptional.isPresent()) {
 					parkingSlotOptional.get().setStatusOptions(StatusOptions.UNAVAILABLE);
 					parkingSlotDao.save(parkingSlotOptional.get());
-				} 
-				else
+				} else
 					return null;
 				requestResponseDto.setStatusCode(HttpStatus.OK.value());
 				return requestResponseDto;
@@ -118,12 +117,14 @@ public class RequestsServiceImpl implements RequestsService {
 				requestsDao.save(requests);
 				requestResponseDto.setStatusCode(HttpStatus.OK.value());
 				return requestResponseDto;
-			} else {
+			} 
+			else {
 
 				return requestResponseDto;
 			}
 
-		} else
+		} 
+		else
 			return null;
 	}
 
@@ -132,50 +133,48 @@ public class RequestsServiceImpl implements RequestsService {
 
 		Optional<List<Requests>> releaseList = requestsDao.findByRequestTypeAndStatusOptionsAndDate(RequestType.RELEASE,
 				StatusOptions.PENDING, LocalDate.now().plusDays(1));
-		
-		logger.info(LocalDate.now().plusDays(1));
-		
-		if (releaseList.isPresent()) {
-			
 
-			List<Long> list = releaseList.get().stream().map(request -> request.getParkingSlotNumber())
+		logger.info(LocalDate.now().plusDays(1));
+
+		if (releaseList.isPresent()) {
+
+			
+			List<Long> list = releaseList.get().stream().map(Requests :: getParkingSlotNumber)
 					.collect(Collectors.toList());
 
 			Optional<List<Requests>> requestList = requestsDao.findByRequestTypeAndStatusOptionsAndDate(
 					RequestType.REQUEST, StatusOptions.PENDING, LocalDate.now().plusDays(1));
-			
+
 			logger.info(LocalDate.now().plusDays(1));
-			
+
 			if (requestList.isPresent()) {
-				
+
 				List<Requests> list2 = requestList.get().subList(1, list.size());
-				
-				
+
 				for (int i = 0; i < list.size(); i++) {
 					logger.info("entered for loop1");
-					
+
 					for (Requests request : list2) {
-						
+
 						logger.info("entered for loop2");
-						
+
 						request.setParkingSlotNumber(list.get(i));
 						request.setStatusOptions(StatusOptions.APPROVED);
 						requestsDao.save(request);
-						
+
 						if (list.get(i++).equals(list.get(list.size() - 1)))
 							break;
 					}
 
 				}
 			} 
-			else
-			{
+			else {
+				
 				releaseList.get().stream().map(request -> updateRelease(request)).collect(Collectors.toList());
 				logger.info("There are no pending requests for today");
 
 			}
-		} 
-		else
+		} else
 			logger.info("There are no pending requests for today");
 
 	}

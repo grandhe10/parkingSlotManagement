@@ -23,7 +23,6 @@ public class Requests {
 	StatusOptions statusOptions;
 	Long parkingSlotNumber;
 
-	
 	public Long getEmployeeId() {
 		return employeeId;
 	}

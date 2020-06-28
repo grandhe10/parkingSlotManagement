@@ -1,7 +1,5 @@
 package com.abc.parkingslotbooking.controller;
 
- 
-
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -35,26 +33,16 @@ import static org.mockito.ArgumentMatchers.any;
 @ExtendWith(MockitoExtension.class)
 public class EmployeeControllerTest {
 
- 
-
-    @Mock
+	@Mock
     EmployeeService employeeService;
 
- 
-
-    MockMvc mockMvc;
+	MockMvc mockMvc;
     ObjectMapper objectMapper;
-
- 
 
     @InjectMocks
     EmployeeController employeeController;
 
- 
-
     LoginDto loginDto;
-
- 
 
     @BeforeEach
     public void setUp() {
@@ -63,14 +51,9 @@ public class EmployeeControllerTest {
         loginDto = new LoginDto();
         loginDto.setPassword("1234");
         loginDto.setEmployeeName("sai");
-
- 
-
     }
 
- 
-
-    @Test
+    	@Test
         public void loginEmployee() throws Exception
         {
             LoginResponseDto loginResponseDto=new LoginResponseDto();

@@ -1,5 +1,6 @@
 package com.abc.parkingslotbooking.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +16,7 @@ public interface RequestsDao extends CrudRepository<Requests, Long>{
 	
 	
 
-	Optional<List<Requests>> findByRequestTypeAndStatusOptions(RequestType requestType,StatusOptions statusType);
+	Optional<List<Requests>> findByRequestTypeAndStatusOptionsAndDate(RequestType requestType,StatusOptions statusType,LocalDate date);
 	
 	 /**This method is used to get all the requests by employeeId and requestid
      * @param employeeId

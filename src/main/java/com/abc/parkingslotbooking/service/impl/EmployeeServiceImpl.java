@@ -1,8 +1,5 @@
 package com.abc.parkingslotbooking.service.impl;
 
- 
-
-
 import java.util.Optional;
 
  
@@ -30,18 +27,11 @@ import org.apache.commons.logging.LogFactory;
  *
  */
 @Service
-
- 
-
 public class EmployeeServiceImpl implements EmployeeService {
 
- 
-
-    private static Log logger = LogFactory.getLog(EmployeeServiceImpl.class);
+ private static Log logger = LogFactory.getLog(EmployeeServiceImpl.class);
     @Autowired
     EmployeeDao employeeDao;
-
- 
 
 
     @Override
@@ -56,21 +46,13 @@ public class EmployeeServiceImpl implements EmployeeService {
             logger.info("Employee logged in Successfully");
             return loginResponseDto;
         }
-
- 
-
+        
         logger.info("Invalid credentials!!!");
         loginResponseDto.setMessage("Invalid credentials!!!");
-        loginResponseDto.setStatusCode(HttpStatus.NOT_FOUND.value());
+        loginResponseDto.setStatusCode(HttpStatus.UNAUTHORIZED.value());
         return loginResponseDto;
 
- 
-
-
     }
-
- 
-
 
 }
  

@@ -3,8 +3,6 @@ package com.abc.parkingslotbooking.service.impl;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -106,15 +104,17 @@ public class RequestServiceImplTest {
 		RequestDto requestDto = new RequestDto();
 		requestDto.setFromDate(LocalDate.parse("2020-06-30"));
 		requestDto.setToDate(LocalDate.parse("2020-07-02"));
+		
 		RequestResponseDto requestResponseDto = new RequestResponseDto();
 		requestResponseDto.setMessage("Request submitted successfully");
 		requestResponseDto.setStatusCode(202);
 		
 		when(employeeDao.findByEmployeeId(1L)).thenReturn(Optional.of(employee));
-		assertThat(!(Optional.of(employee).get().equals(null)));
+		assertThat(!(Optional.of(employee).get().equals(null))).isTrue();
 		when(parkingSlotDao.findByDateAndEmployeeId(LocalDate.parse("2020-06-30"), 1L)).thenReturn(Optional.of(parkingSlot));
-		assertThat(!(Optional.of(parkingSlot).get().equals(null)));
+		assertThat(!(Optional.of(parkingSlot).get().equals(null))).isTrue();
 		requestsServiceImpl.submitRequest(requestDto, 1L);
+		
 
 	}
 }

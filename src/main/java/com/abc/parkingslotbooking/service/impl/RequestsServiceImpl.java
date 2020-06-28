@@ -73,7 +73,7 @@ public class RequestsServiceImpl implements RequestsService {
 
 	private static List<LocalDate> getDatesBetweenUsingJava8(LocalDate fromDate, LocalDate toDate) {
 		if (fromDate.equals(toDate)) {
-			System.out.println(fromDate.equals(toDate));
+			
 			List<LocalDate> localDatelist = new ArrayList<>();
 			localDatelist.add(fromDate);
 			return localDatelist;
@@ -103,7 +103,8 @@ public class RequestsServiceImpl implements RequestsService {
 				if (parkingSlotOptional.isPresent()) {
 					parkingSlotOptional.get().setStatusOptions(StatusOptions.UNAVAILABLE);
 					parkingSlotDao.save(parkingSlotOptional.get());
-				} else
+				} 
+				else
 					return null;
 				requestResponseDto.setStatusCode(HttpStatus.OK.value());
 				return requestResponseDto;
@@ -160,19 +161,21 @@ public class RequestsServiceImpl implements RequestsService {
 						request.setParkingSlotNumber(list.get(i));
 						request.setStatusOptions(StatusOptions.APPROVED);
 						requestsDao.save(request);
-						i++;
-						if (list.get(i++) == list.get(list.size() - 1))
+						
+						if (list.get(i++).equals(list.get(list.size() - 1)))
 							break;
 					}
 
 				}
-			} else
+			} 
+			else
 			{
 				releaseList.get().stream().map(request -> updateRelease(request)).collect(Collectors.toList());
 				logger.info("There are no pending requests for today");
 
 			}
-		} else
+		} 
+		else
 			logger.info("There are no pending requests for today");
 
 	}
@@ -211,7 +214,7 @@ public class RequestsServiceImpl implements RequestsService {
 	public List<ResponseDto> getrequestsByEmployeeId(Long employeeId) {
 		logger.info("Inside getrequestsByEmployeeId requestserviceimpl ");
 
-		List<ResponseDto> responseList = new ArrayList<ResponseDto>();
+		List<ResponseDto> responseList = new ArrayList<>();
 
 		Optional<List<Requests>> requestsOptional = requestsDao.findByEmployeeId(employeeId);
 

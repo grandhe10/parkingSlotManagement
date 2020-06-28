@@ -63,7 +63,7 @@ public class RequestsController {
 	@GetMapping("/employees/{employeeId}")
 	public ResponseEntity<List<ResponseDto>> getrequestsbyEmployeeId(@PathVariable("employeeId") Long employeeId) {
 		logger.info("Inside getrequestsbyEmployeeIdAndRequestId request controller ");
-		return new ResponseEntity<List<ResponseDto>>(requestsService.getrequestsByEmployeeId(employeeId),
+		return new ResponseEntity<>(requestsService.getrequestsByEmployeeId(employeeId),
 				HttpStatus.OK);
 
 	}

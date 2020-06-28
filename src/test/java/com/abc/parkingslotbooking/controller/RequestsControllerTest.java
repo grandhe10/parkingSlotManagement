@@ -1,13 +1,9 @@
 package com.abc.parkingslotbooking.controller;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -76,18 +72,7 @@ public class RequestsControllerTest {
 	employee.setParkingSlotNumber(1234L);
 	employee.setPassword("test");
 	
-	/*
-	 * lenient().when(requestsService.submitRequest(any(RequestDto.class),
-	 * eq(1L))).thenReturn(requestResponseDto);
-	 * 
-	 * mockMvc.perform(post("/employees/{employeeId}/requests", 1L)
-	 * .contentType(MediaType.APPLICATION_JSON_VALUE)
-	 * .content(objectMapper.writeValueAsString(requestDto)))
-	 * .andExpect(status().isAccepted()) .andExpect(jsonPath("$",
-	 * Matchers.any(LinkedHashMap.class)));
-	 * verify(requestsService).submitRequest(any(RequestDto.class), eq(1L));
-	 */
-
+	
 }
 	
 

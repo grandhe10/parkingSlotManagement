@@ -63,5 +63,29 @@ public class EmployeeServiceImplTest {
 		employeeServiceImpl.loginEmployee(loginDto);
 		verify(employeeDao).findByEmployeeNameAndPassword("sai", "1234");
 	}
+	
+	
+	@Test
+	public void loginEmployeeTest1() {
+		
+		Employee employee = new Employee();
+		employee.setEmployeeId(1L);
+		employee.setEmployeeName("sai");
+		employee.setEmployeeType(EmployeeType.NON_VIP);
+		employee.setExperienceInYears(5L);
+		employee.setParkingSlotNumber(2345L);
+		employee.setPassword("1234");
+		
+		LoginDto loginDto = new LoginDto();
+		loginDto.setEmployeeName("sai");
+		loginDto.setPassword("1234");
+		
+		LoginResponseDto loginResponseDto = new LoginResponseDto();
+		loginResponseDto.setMessage("Employee logged in");
+		loginResponseDto.setStatusCode(200);
+		when(employeeDao.findByEmployeeNameAndPassword("sai","1234")).thenReturn(Optional.of(employee));
+		employeeServiceImpl.loginEmployee(loginDto);
+		verify(employeeDao).findByEmployeeNameAndPassword("sai", "1234");
+	}
 
 }

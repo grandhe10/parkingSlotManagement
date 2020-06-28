@@ -16,6 +16,9 @@ class ParkingSlotBookingApplicationTests {
 	RequestsController requestsController;
 	@Autowired
 	EmployeeController employeeController;
+
+	@Autowired
+
 	@Test
 	public void contexLoads() throws Exception {
 		assertThat(requestsController).isNotNull();
@@ -26,4 +29,8 @@ class ParkingSlotBookingApplicationTests {
 		assertThat(employeeController).isNotNull();
 	}
 
+	@Test
+	public void main() {
+		ParkingSlotBookingApplication.main(new String[] {});
+	}
 }

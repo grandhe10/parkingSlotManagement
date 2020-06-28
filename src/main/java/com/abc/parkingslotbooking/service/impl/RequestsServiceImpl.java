@@ -103,12 +103,14 @@ public class RequestsServiceImpl implements RequestsService {
 				if (parkingSlotOptional.isPresent()) {
 					parkingSlotOptional.get().setStatusOptions(StatusOptions.UNAVAILABLE);
 					parkingSlotDao.save(parkingSlotOptional.get());
-				} else
+				} 
+				else
 					return null;
 				requestResponseDto.setStatusCode(HttpStatus.OK.value());
 				return requestResponseDto;
 
-			} else if (employee.get().getEmployeeType().equals(EmployeeType.NON_VIP)) {
+			}
+			else if (employee.get().getEmployeeType().equals(EmployeeType.NON_VIP)) {
 				requests.setDate(date);
 				requests.setEmployeeId(employeeId);
 				requests.setParkingSlotNumber(0L);
@@ -161,8 +163,8 @@ public class RequestsServiceImpl implements RequestsService {
 						request.setParkingSlotNumber(list.get(i));
 						request.setStatusOptions(StatusOptions.APPROVED);
 						requestsDao.save(request);
-
-						if (list.get(i++).equals(list.get(list.size() - 1)))
+						i++;
+						if (list.get(i).equals(list.get(list.size() - 1)))
 							break;
 					}
 
@@ -174,7 +176,8 @@ public class RequestsServiceImpl implements RequestsService {
 				logger.info("There are no pending requests for today");
 
 			}
-		} else
+		} 
+		else
 			logger.info("There are no pending requests for today");
 
 	}
@@ -218,7 +221,7 @@ public class RequestsServiceImpl implements RequestsService {
 		Optional<List<Requests>> requestsOptional = requestsDao.findByEmployeeId(employeeId);
 
 		if (requestsOptional.isPresent())
-
+			
 			return requestsOptional.get().stream().map(request -> getResponseDto(request)).collect(Collectors.toList());
 
 		else {
@@ -231,4 +234,5 @@ public class RequestsServiceImpl implements RequestsService {
 		BeanUtils.copyProperties(request, responseDto);
 		return responseDto;
 	}
+	
 }
